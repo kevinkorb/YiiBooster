@@ -13,8 +13,8 @@ echo "\$this->breadcrumbs=array(
 ?>
 
 $this->menu=array(
-	array('label'=>'Create <?php echo $this->modelClass; ?>','url'=>array('create')),
-	array('label'=>'Manage <?php echo $this->modelClass; ?>','url'=>array('admin')),
+	array('label'=>'Create New <?php echo $this->modelClass; ?>','url'=>array('create')),
+	array('label'=>'Manage <?php echo $this->modelClass; ?>s','url'=>array('admin')),
 );
 ?>
 

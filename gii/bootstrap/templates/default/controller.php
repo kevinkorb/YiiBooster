@@ -34,7 +34,7 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -52,17 +52,6 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 	}
 
 	/**
-	 * Displays a particular model.
-	 * @param integer $id the ID of the model to be displayed
-	 */
-	public function actionView($id)
-	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
-	}
-
-	/**
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
@@ -77,7 +66,7 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 		{
 			$model->attributes=$_POST['<?php echo $this->modelClass; ?>'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model-><?php echo $this->tableSchema->primaryKey; ?>));
+				$this->redirect(array('admin'));
 		}
 
 		$this->render('create',array(
@@ -101,7 +90,7 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 		{
 			$model->attributes=$_POST['<?php echo $this->modelClass; ?>'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model-><?php echo $this->tableSchema->primaryKey; ?>));
+				$this->redirect(array('admin'));
 		}
 
 		$this->render('update',array(
@@ -134,10 +123,7 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('<?php echo $this->modelClass; ?>');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
+		$this->actionAdmin();
 	}
 
 	/**
